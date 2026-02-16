@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Gleb Gorbatiuc</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">GG</a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">&#8593;</button>
+
+<!-- Loading Screen -->
+
+
+<div class="loader-screen" id="loader">
+  <div class="loader-particles" id="particles"></div>
+  <div class="loader-glow">
+    <div class="loader-initials">GG</div>
+  </div>
+  <div class="loader-name">Gleb Gorbatiuc</div>
+  <div class="loader-subtitle">Personal Bio</div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar-fill"></div>
+  </div>
+  
+</div>
+
+
+
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <h1>Get in Touch</h1>
+    <p>Always open to the next opportunity</p>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="contact-grid">
+    <div class="contact-form-card tilt-card reveal">
+      <div class="tilt-shine"></div>
+      <h3>Send a Message</h3>
+      <form onsubmit="event.preventDefault(); this.querySelector('.form-submit').textContent='Message Sent!'; this.querySelector('.form-submit').style.background='#22c55e'; return false;">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What's on your mind?" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info-card tilt-card reveal">
+      <div class="tilt-shine"></div>
+      <h3>Contact Info</h3>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#128231;</div>
+        <div>
+          <p class="info-label">Email</p>
+          <p class="info-value"><a href="mailto:gorbatiucgleb@gmail.com">gorbatiucgleb@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#128241;</div>
+        <div>
+          <p class="info-label">Phone</p>
+          <p class="info-value"><a href="tel:+16129631667">(612) 963-1667</a></p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#128248;</div>
+        <div>
+          <p class="info-label">Instagram</p>
+          <p class="info-value">Instagram</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">&#128123;</div>
+        <div>
+          <p class="info-label">Snapchat</p>
+          <p class="info-value">Snapchat</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Favorites & Fun Facts -->
+    <div class="section reveal">
+      <div class="section-header">
+        <div class="icon">⭐</div>
+        <h2>Favorites &amp; Fun Facts</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="fav-grid">
+        <div class="fav-card">
+          <div class="fav-emoji">🏎️</div>
+          <div class="fav-content">
+            <p class="fav-label">Dream Car</p>
+            <p class="fav-value">Lamborghini Aventador SVJ</p>
+            <p class="fav-sub">The ultimate goal — 770 HP of pure Italian fury</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">😂</div>
+          <div class="fav-content">
+            <p class="fav-label">Favorite Genre</p>
+            <p class="fav-value">Comedy</p>
+            <p class="fav-sub">Movies, shows, stand-up — all of it</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🎣</div>
+          <div class="fav-content">
+            <p class="fav-label">Fishing PB</p>
+            <p class="fav-value">6 lb Largemouth Bass</p>
+            <p class="fav-sub">Lake fishing in Minnesota</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">☀️</div>
+          <div class="fav-content">
+            <p class="fav-label">Dream Location</p>
+            <p class="fav-value">LA or Miami</p>
+            <p class="fav-sub">Warm weather, good vibes year-round</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🏔️</div>
+          <div class="fav-content">
+            <p class="fav-label">Coolest Trip</p>
+            <p class="fav-value">Mount Rushmore</p>
+            <p class="fav-sub">Saw the president heads in person</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">👨‍🍳</div>
+          <div class="fav-content">
+            <p class="fav-label">In the Kitchen</p>
+            <p class="fav-value">Can cook anything</p>
+            <p class="fav-sub">Pasta, grilling, burgers, chicken &amp; asparagus</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">👟</div>
+          <div class="fav-content">
+            <p class="fav-label">Favorite Kicks</p>
+            <p class="fav-value">Jordans</p>
+            <p class="fav-sub">Streetwear, clean fits, always fresh</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">💰</div>
+          <div class="fav-content">
+            <p class="fav-label">Earned at 16</p>
+            <p class="fav-value">A few thousand $$$</p>
+            <p class="fav-sub">Landscaping, tile work, side jobs</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🏈</div>
+          <div class="fav-content">
+            <p class="fav-label">NFL Team</p>
+            <p class="fav-value">Seattle Seahawks</p>
+            <p class="fav-sub">2026 Super Bowl Champs!</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🏀</div>
+          <div class="fav-content">
+            <p class="fav-label">NBA Team</p>
+            <p class="fav-value">MN Timberwolves</p>
+            <p class="fav-sub">Repping the home state</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">☀️</div>
+          <div class="fav-content">
+            <p class="fav-label">Favorite Season</p>
+            <p class="fav-value">Summer — No Contest</p>
+            <p class="fav-sub">Birthday season, lake days, and grills fired up every weekend — winter's got snowboarding, but summer owns my heart</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🎮</div>
+          <div class="fav-content">
+            <p class="fav-label">Gaming</p>
+            <p class="fav-value">Call of Duty &amp; Need for Speed</p>
+            <p class="fav-sub">When I'm not grinding in real life, I'm dropping into lobbies or burning rubber on the virtual track</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🌅</div>
+          <div class="fav-content">
+            <p class="fav-label">Perfect Day</p>
+            <p class="fav-value">A Little Bit of Everything</p>
+            <p class="fav-sub">Lake day, fire up the grill, hit the slopes, work on cars, chill with the crew — all of it</p>
+          </div>
+        </div>
+        <div class="fav-card">
+          <div class="fav-emoji">🎯</div>
+          <div class="fav-content">
+            <p class="fav-label">Next Goal</p>
+            <p class="fav-value">Aventador SVJ</p>
+            <p class="fav-sub">Every dollar earned, every hustle, every grind — it's all building toward that Lambo</p>
+          </div>
+        </div>
+        <div class="fav-card wide">
+          <div class="fav-emoji">💪</div>
+          <div class="fav-content">
+            <p class="fav-label">Life Motto</p>
+            <p class="fav-value">100% or Nothing</p>
+            <p class="fav-sub">Always pursuing the next opportunity, always delivering maximum effort — launched a business at 16 and this is just the beginning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="section reveal">
+      <div class="section-header">
+        <div class="icon">🗣️</div>
+        <h2>Languages</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lang-bar">
+        <div class="lang-item">
+          <div class="flag">🇺🇸</div>
+          <p class="lang-name">English</p>
+          <p class="lang-level">Fluent</p>
+        </div>
+        <div class="lang-item">
+          <div class="flag">🇷🇺</div>
+          <p class="lang-name">Russian</p>
+          <p class="lang-level">Fluent</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="section reveal">
+      <div class="contact-section">
+        <div class="section-header">
+          <div class="icon">✉️</div>
+          <h2>Get in Touch</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:gorbatiucgleb@gmail.com" class="contact-btn primary">gorbatiucgleb@gmail.com</a>
+          <a href="tel:+16129631667" class="contact-btn">(612) 963-1667</a>
+          <a href="#" class="contact-btn">Instagram</a>
+          <a href="#" class="contact-btn">Snapchat</a>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+<!-- Signature -->
+    <div class="signature-section reveal">
+      <p class="signature-label">Signed</p>
+      <svg class="signature-svg" id="signatureSvg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- G -->
+        <path d="M 30 60 Q 30 20, 60 20 Q 90 20, 90 45 L 70 45" />
+        <!-- l -->
+        <path d="M 100 15 L 100 70" />
+        <!-- e -->
+        <path d="M 115 50 Q 115 35, 130 35 Q 145 35, 145 50 L 115 50 Q 115 70, 135 68" />
+        <!-- b -->
+        <path d="M 155 15 L 155 70 Q 155 40, 175 38 Q 195 38, 192 55 Q 190 70, 170 70 Q 155 70, 155 55" />
+        <!-- space + G -->
+        <path d="M 225 60 Q 225 25, 255 25 Q 280 25, 280 48 L 260 48" />
+        <!-- dot -->
+        <circle class="sig-dot" cx="295" cy="48" r="4" />
+      </svg>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2026 <span>Gleb Gorbatiuc</span></p>
+      <p class="footer-sub">Moldova · Washington · North Dakota · Minnesota</p>
+    </div>
+
+  </div>
+</div>
+
+
+
+</div>
+
+<!-- Interactive Terminal -->
+<button class="terminal-toggle" id="termToggle" title="Open Terminal">>&_</button>
+
+<div class="terminal-overlay" id="termOverlay">
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="terminal-titlebar-left">
+        <div class="term-dots">
+          <div class="term-dot r"></div>
+          <div class="term-dot y"></div>
+          <div class="term-dot g"></div>
+        </div>
+        <span class="term-title">gleb@bio ~ terminal</span>
+      </div>
+      <button class="terminal-close" id="termClose">&times;</button>
+    </div>
+    <div class="terminal-body" id="termBody"></div>
+    <div class="terminal-input-row">
+      <span class="term-prompt">gleb@bio ~$</span>
+      <input class="terminal-input" id="termInput" type="text" placeholder="type 'help' to start..." autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+</div>
+
+<canvas class="matrix-canvas" id="matrixCanvas"></canvas>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>

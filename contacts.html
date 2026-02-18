@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacts Dashboard — Gleb Gorbatiuc</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  .crud-wrap { max-width:900px; margin:0 auto; padding:30px 24px; }
+  .crud-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+  .crud-header h3 { font-size:18px; font-weight:700; color:var(--navy); }
+  .btn { padding:10px 20px; border:none; border-radius:10px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+  .btn-primary { background:var(--navy); color:#fff; }
+  .btn-primary:hover { background:var(--accent); transform:translateY(-2px); }
+  .btn-danger { background:#ef4444; color:#fff; }
+  .btn-danger:hover { background:#dc2626; }
+  .btn-edit { background:var(--accent); color:#fff; }
+  .btn-edit:hover { background:var(--navy); }
+  .btn-sm { padding:6px 14px; font-size:12px; }
+  .btn-outline { background:none; border:2px solid var(--navy-faint); color:var(--navy); }
+  .btn-outline:hover { background:var(--navy-ghost); }
+  .logout-btn { background:none; border:1.5px solid rgba(255,255,255,0.25); color:#fff; padding:6px 16px; border-radius:8px; font-size:12px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.2s; }
+  .logout-btn:hover { background:#fff; color:var(--navy); }
+
+  .search-bar { width:100%; padding:12px 16px; border:2px solid var(--navy-faint); border-radius:10px; font-family:'Inter',sans-serif; font-size:14px; color:var(--text); background:var(--bg); outline:none; transition:border-color 0.2s; margin-bottom:20px; }
+  .search-bar:focus { border-color:var(--accent); }
+
+  .contacts-table { width:100%; border-collapse:separate; border-spacing:0; background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--navy-faint); }
+  .contacts-table th { background:var(--navy); color:#fff; padding:14px 16px; text-align:left; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+  .contacts-table td { padding:14px 16px; border-bottom:1px solid var(--navy-faint); font-size:14px; color:var(--text); }
+  .contacts-table tr:last-child td { border-bottom:none; }
+  .contacts-table tr:hover td { background:var(--navy-ghost); }
+  .td-actions { display:flex; gap:6px; }
+
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); z-index:1000; display:none; align-items:center; justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:var(--white); border-radius:var(--radius); padding:32px; width:90%; max-width:420px; box-shadow:var(--shadow-lg); animation:termSlideUp 0.3s ease; }
+  .modal h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:20px; }
+  .modal-btns { display:flex; gap:10px; margin-top:20px; }
+  .modal-btns .btn { flex:1; }
+
+  .empty-state { text-align:center; padding:60px 24px; color:var(--text-secondary); }
+  .empty-state .empty-icon { font-size:48px; margin-bottom:12px; }
+  .empty-state p { font-size:14px; }
+
+  .user-bar { display:flex; align-items:center; gap:10px; }
+  .user-email { font-size:11px; color:rgba(255,255,255,0.5); }
+
+  @media (max-width:640px) {
+    .contacts-table { font-size:12px; }
+    .contacts-table th, .contacts-table td { padding:10px 8px; }
+    .td-actions { flex-direction:column; }
+  }
+</style>
+</head>
+<body class="loaded">
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">GG</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contacts.html" class="active">Contacts</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="user-bar">
+      <span class="user-email" id="userEmail"></span>
+      <button class="logout-btn" onclick="handleLogout()">Log Out</button>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Contacts Dashboard</h1>
+  <p>Manage your contacts — Add, Edit, Delete</p>
+</div>
+
+<div class="crud-wrap">
+  <div class="crud-header">
+    <h3 id="contactCount">Contacts (0)</h3>
+    <button class="btn btn-primary" onclick="openAddModal()">+ Add Contact</button>
+  </div>
+
+  <input type="text" class="search-bar" id="searchInput" placeholder="Search contacts by name, email, or phone..." oninput="filterContacts()">
+
+  <div id="tableWrap">
+    <table class="contacts-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Added</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="contactsBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="empty-icon">📇</div>
+    <p>No contacts yet. Click "Add Contact" to get started.</p>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Add Contact</h3>
+    <div class="form-group">
+      <label for="modalName">Name *</label>
+      <input type="text" id="modalName" placeholder="Full name" required>
+    </div>
+    <div class="form-group">
+      <label for="modalEmail">Email</label>
+      <input type="email" id="modalEmail" placeholder="email@example.com">
+    </div>
+    <div class="form-group">
+      <label for="modalPhone">Phone</label>
+      <input type="text" id="modalPhone" placeholder="(555) 123-4567">
+    </div>
+    <div id="modalError" style="display:none;color:#dc2626;font-size:13px;margin-top:8px;"></div>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" id="modalSubmit" onclick="saveContact()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteOverlay">
+  <div class="modal" style="text-align:center;">
+    <h3>Delete Contact?</h3>
+    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:4px;">This will permanently remove <strong id="deleteName"></strong>.</p>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeDelete()">Cancel</button>
+      <button class="btn btn-danger" id="deleteBtn" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 <span>Gleb Gorbatiuc</span></p>
+  <p class="footer-sub">Moldova &middot; Washington &middot; North Dakota &middot; Minnesota</p>
+</div>
+
+<script>
+var SUPABASE_URL = 'https://sejvaqegzwtaectjatkt.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlanZhcWVnend0YWVjdGphdGt0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDM3MzksImV4cCI6MjA4NzAxOTczOX0.ZW-Ve9CtUZDSA_SO3GfoDoJb_r3F_albouBdiakLVD8';
+var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+var allContacts = [];
+var editingId = null;
+var deletingId = null;
+
+// ── Auth Check ──
+async function checkAuth() {
+  var { data } = await sb.auth.getSession();
+  if (!data.session) {
+    window.location.href = 'login.html';
+    return;
+  }
+  document.getElementById('userEmail').textContent = data.session.user.email;
+  loadContacts();
+}
+
+async function handleLogout() {
+  await sb.auth.signOut();
+  window.location.href = 'login.html';
+}
+
+// ── READ ──
+async function loadContacts() {
+  var { data, error } = await sb.from('contacts').select('*').order('created_at', { ascending: false });
+  if (error) { console.error(error); return; }
+  allContacts = data || [];
+  renderContacts(allContacts);
+}
+
+function renderContacts(contacts) {
+  var tbody = document.getElementById('contactsBody');
+  var empty = document.getElementById('emptyState');
+  var table = document.getElementById('tableWrap');
+  document.getElementById('contactCount').textContent = 'Contacts (' + contacts.length + ')';
+
+  if (contacts.length === 0) {
+    table.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+
+  table.style.display = 'block';
+  empty.style.display = 'none';
+
+  tbody.innerHTML = contacts.map(function(c) {
+    var date = new Date(c.created_at).toLocaleDateString();
+    return '<tr>' +
+      '<td><strong>' + escHtml(c.name) + '</strong></td>' +
+      '<td>' + escHtml(c.email || '—') + '</td>' +
+      '<td>' + escHtml(c.phone || '—') + '</td>' +
+      '<td style="color:var(--text-secondary);font-size:12px;">' + date + '</td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-edit btn-sm" onclick="openEdit(' + c.id + ')">Edit</button>' +
+        '<button class="btn btn-danger btn-sm" onclick="openDelete(' + c.id + ',\'' + escHtml(c.name).replace(/'/g, "\\'") + '\')">Delete</button>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── SEARCH / FILTER ──
+function filterContacts() {
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  if (!q) { renderContacts(allContacts); return; }
+  var filtered = allContacts.filter(function(c) {
+    return (c.name && c.name.toLowerCase().includes(q)) ||
+           (c.email && c.email.toLowerCase().includes(q)) ||
+           (c.phone && c.phone.toLowerCase().includes(q));
+  });
+  renderContacts(filtered);
+}
+
+// ── CREATE / UPDATE Modal ──
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = 'Add Contact';
+  document.getElementById('modalSubmit').textContent = 'Save';
+  document.getElementById('modalName').value = '';
+  document.getElementById('modalEmail').value = '';
+  document.getElementById('modalPhone').value = '';
+  document.getElementById('modalError').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modalName').focus();
+}
+
+function openEdit(id) {
+  var contact = allContacts.find(function(c) { return c.id === id; });
+  if (!contact) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = 'Edit Contact';
+  document.getElementById('modalSubmit').textContent = 'Update';
+  document.getElementById('modalName').value = contact.name || '';
+  document.getElementById('modalEmail').value = contact.email || '';
+  document.getElementById('modalPhone').value = contact.phone || '';
+  document.getElementById('modalError').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modalName').focus();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  editingId = null;
+}
+
+async function saveContact() {
+  var name = document.getElementById('modalName').value.trim();
+  var email = document.getElementById('modalEmail').value.trim();
+  var phone = document.getElementById('modalPhone').value.trim();
+
+  if (!name) {
+    document.getElementById('modalError').textContent = 'Name is required.';
+    document.getElementById('modalError').style.display = 'block';
+    return;
+  }
+
+  if (email && !email.includes('@')) {
+    document.getElementById('modalError').textContent = 'Please enter a valid email.';
+    document.getElementById('modalError').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('modalSubmit').textContent = 'Saving...';
+
+  if (editingId) {
+    // UPDATE
+    var { error } = await sb.from('contacts').update({ name: name, email: email, phone: phone }).eq('id', editingId);
+    if (error) {
+      document.getElementById('modalError').textContent = error.message;
+      document.getElementById('modalError').style.display = 'block';
+      document.getElementById('modalSubmit').textContent = 'Update';
+      return;
+    }
+  } else {
+    // CREATE
+    var { error } = await sb.from('contacts').insert({ name: name, email: email, phone: phone });
+    if (error) {
+      document.getElementById('modalError').textContent = error.message;
+      document.getElementById('modalError').style.display = 'block';
+      document.getElementById('modalSubmit').textContent = 'Save';
+      return;
+    }
+  }
+
+  closeModal();
+  loadContacts();
+}
+
+// ── DELETE ──
+function openDelete(id, name) {
+  deletingId = id;
+  document.getElementById('deleteName').textContent = name;
+  document.getElementById('deleteOverlay').classList.add('open');
+}
+
+function closeDelete() {
+  document.getElementById('deleteOverlay').classList.remove('open');
+  deletingId = null;
+}
+
+async function confirmDelete() {
+  if (!deletingId) return;
+  document.getElementById('deleteBtn').textContent = 'Deleting...';
+
+  var { error } = await sb.from('contacts').delete().eq('id', deletingId);
+  if (error) { console.error(error); }
+
+  document.getElementById('deleteBtn').textContent = 'Delete';
+  closeDelete();
+  loadContacts();
+}
+
+// Close modals on outside click
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('deleteOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDelete();
+});
+
+// ── Init ──
+checkAuth();
+</script>
+</body>
+</html>

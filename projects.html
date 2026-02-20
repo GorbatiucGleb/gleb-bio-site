@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Gleb Gorbatiuc</title>
+<title>Portfolio — Gleb Gorbatiuc</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,19 +17,16 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="contacts.html">Contacts</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><a href="contacts.html">Contacts</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- Back to Top Button -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">&#8593;</button>
-
-<!-- Loading Screen -->
-
 
 <div class="loader-screen" id="loader">
   <div class="loader-particles" id="particles"></div>
@@ -37,280 +34,106 @@
     <div class="loader-initials">GG</div>
   </div>
   <div class="loader-name">Gleb Gorbatiuc</div>
-  <div class="loader-subtitle">Personal Bio</div>
+  <div class="loader-subtitle">Portfolio & Experience</div>
   <div class="loader-bar-wrap">
     <div class="loader-bar-fill"></div>
   </div>
-  
 </div>
-
-
 
 <div class="page-wrap">
 
   <div class="page-hero">
-    <h1>Projects &amp; Experience</h1>
-    <p>What I've built, learned, and worked on</p>
+    <h1>Portfolio & Experience</h1>
+    <p>Before & After transformations and completed projects</p>
   </div>
 
-<!-- Skills & Strengths -->
-    <div class="section reveal">
-      <div class="section-header">
-        <div class="icon">💡</div>
-        <h2>Skills &amp; Strengths</h2>
-        <div class="section-line"></div>
+  <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px;">
+
+    <!-- Job 1: Lawn Care -->
+    <div class="job-card reveal">
+      <div class="job-header">
+        <div>
+          <h2 class="job-title">Lawn Restoration Project 1</h2>
+          <p class="job-description">Complete yard transformation from overgrown dandelion-filled lawn to professionally maintained striped grass. Professional landscaping service with attention to detail.</p>
+        </div>
       </div>
-      <div class="skills-grid">
-        <div class="skill-row">
-          <span class="skill-label">Landscaping</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95" style="--bar-width:95%"></div></div>
-          <span class="skill-level">95%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Tile Work</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85" style="--bar-width:85%"></div></div>
-          <span class="skill-level">85%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Cooking</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90" style="--bar-width:90%"></div></div>
-          <span class="skill-level">90%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Auto Mechanics</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="65" style="--bar-width:65%"></div></div>
-          <span class="skill-level">65%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">LVP Flooring</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80" style="--bar-width:80%"></div></div>
-          <span class="skill-level">80%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Snowboarding</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88" style="--bar-width:88%"></div></div>
-          <span class="skill-level">88%</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-label">Coding</span>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="40" style="--bar-width:40%"></div></div>
-          <span class="skill-level">40%</span>
-        </div>
+      <div class="slider-container">
+        <img src="photos/lawn-before-1.jpg" alt="Before" class="slider-image before" style="clip-path: inset(0 50% 0 0);">
+        <img src="photos/lawn-after-1.jpg" alt="After" class="slider-image after">
+        <div class="slider-handle" id="slider1"></div>
+        <button class="slider-button">←→</button>
+        <div class="slider-label before">Before</div>
+        <div class="slider-label after">After</div>
       </div>
     </div>
 
-    <!-- Learning to Code -->
-    <div class="section reveal">
-      <div class="section-header">
-        <div class="icon">💻</div>
-        <h2>Learning to Code</h2>
-        <div class="section-line"></div>
+    <!-- Job 2: Backyard Cleanup -->
+    <div class="job-card reveal">
+      <div class="job-header">
+        <div>
+          <h2 class="job-title">Backyard Cleanup & Landscaping</h2>
+          <p class="job-description">Transformed a cluttered backyard full of leaves and debris into a clean, well-maintained outdoor space. Complete seasonal cleanup and yard preparation.</p>
+        </div>
       </div>
-      <div class="code-editor">
-        <div class="code-titlebar">
-          <div class="code-dots">
-            <div class="code-dot red"></div>
-            <div class="code-dot yellow"></div>
-            <div class="code-dot green"></div>
-          </div>
-          <div class="code-tab"><span class="tab-icon">&lt;/&gt;</span> gleb_journey.py</div>
-        </div>
-        <div class="code-body">
-          <div class="code-line">
-            <span class="line-num">1</span>
-            <span class="line-content"><span class="code-comment"># ── Gleb's Coding Journey ──</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">2</span>
-            <span class="line-content"><span class="code-comment"># Currently being mentored by my AI coding teacher, Sasha</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">3</span>
-            <span class="line-content"></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">4</span>
-            <span class="line-content"><span class="code-keyword">class</span> <span class="code-class">Gleb</span><span class="code-bracket">:</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">5</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-method">__init__</span><span class="code-bracket">(</span><span class="code-this">self</span><span class="code-bracket">)</span><span class="code-bracket">:</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">6</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">name</span> <span class="code-operator">=</span> <span class="code-string">"Gleb Gorbatiuc"</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">7</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">age</span> <span class="code-operator">=</span> <span class="code-number">16</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">8</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">teacher</span> <span class="code-operator">=</span> <span class="code-string">"Sasha"</span> <span class="code-comment"># AI coding mentor</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">9</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">mindset</span> <span class="code-operator">=</span> <span class="code-string">"100% or nothing"</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">10</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">skills</span> <span class="code-operator">=</span> <span class="code-bracket">[</span><span class="code-string">"Python"</span><span class="code-bracket">,</span> <span class="code-string">"HTML"</span><span class="code-bracket">,</span> <span class="code-string">"CSS"</span><span class="code-bracket">,</span> <span class="code-string">"JS"</span><span class="code-bracket">]</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">11</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">learning</span> <span class="code-operator">=</span> <span class="code-type">True</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">12</span>
-            <span class="line-content"></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">13</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-method">grind</span><span class="code-bracket">(</span><span class="code-this">self</span><span class="code-bracket">)</span><span class="code-bracket">:</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">14</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">while</span> <span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">learning</span><span class="code-bracket">:</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">15</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-this">self</span><span class="code-operator">.</span><span class="code-property">skills</span><span class="code-operator">.</span><span class="code-method">append</span><span class="code-bracket">(</span><span class="code-string">"new_skill"</span><span class="code-bracket">)</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">16</span>
-            <span class="line-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">print</span><span class="code-bracket">(</span><span class="code-string">"Never stop building."</span><span class="code-bracket">)</span><span class="code-cursor"></span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">17</span>
-            <span class="line-content"></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">18</span>
-            <span class="line-content"><span class="code-comment"># The grind doesn't compile — it never stops running</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">19</span>
-            <span class="line-content"><span class="code-property">gleb</span> <span class="code-operator">=</span> <span class="code-class">Gleb</span><span class="code-bracket">()</span></span>
-          </div>
-          <div class="code-line">
-            <span class="line-num">20</span>
-            <span class="line-content"><span class="code-property">gleb</span><span class="code-operator">.</span><span class="code-method">grind</span><span class="code-bracket">()</span></span>
-          </div>
-        </div>
-        <div class="code-output">
-          <div class="output-header">Terminal Output</div>
-          <div class="output-line">
-            <span class="output-prefix">&gt;</span>
-            <span class="output-text">Mentor: <span class="output-highlight">Sasha</span> (AI Coding Teacher)</span>
-          </div>
-          <div class="output-line">
-            <span class="output-prefix">&gt;</span>
-            <span class="output-text">Status: <span class="output-highlight">Actively learning &amp; building</span></span>
-          </div>
-          <div class="output-line">
-            <span class="output-prefix">&gt;</span>
-            <span class="output-text">Stack: <span class="output-highlight">Python, HTML, CSS, JavaScript</span></span>
-          </div>
-          <div class="output-line">
-            <span class="output-prefix">&gt;</span>
-            <span class="output-text">Next: <span class="output-highlight">Adding coding to the hustle portfolio</span><span class="typing-dots"><span></span><span></span><span></span></span></span>
-          </div>
-          <div class="output-success">
-            &#10003; Same kid who builds businesses is now building software — taught by AI, driven by ambition
-          </div>
-        </div>
-        <div class="code-statusbar">
-          <div class="status-left">
-            <span class="status-item"><span class="status-dot"></span> <span class="status-active">Python 3.12</span></span>
-            <span class="status-item">UTF-8</span>
-          </div>
-          <div class="status-right">
-            <span class="status-item">Ln 20, Col 14</span>
-            <span class="status-item status-active">Spaces: 4</span>
-          </div>
-        </div>
+      <div class="slider-container">
+        <img src="photos/lawn-before-2.jpg" alt="Before" class="slider-image before" style="clip-path: inset(0 50% 0 0);">
+        <img src="photos/lawn-after-2.jpg" alt="After" class="slider-image after">
+        <div class="slider-handle" id="slider2"></div>
+        <button class="slider-button">←→</button>
+        <div class="slider-label before">Before</div>
+        <div class="slider-label after">After</div>
       </div>
     </div>
 
-    <!-- Work & Hustle -->
-    <div class="section reveal">
-      <div class="section-header">
-        <div class="icon">💼</div>
-        <h2>Work &amp; Hustle</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="work-grid">
-        <div class="work-card">
-          <div class="work-icon">🌿</div>
-          <div class="work-content">
-            <h3>Landscaping &amp; Fall Cleanup Business</h3>
-            <p>Co-founded a landscaping and seasonal cleanup business from the ground up. We manage everything from lawn maintenance to full fall cleanups. Between this venture, working alongside my father in the trades, and other projects, I've earned several thousand dollars — all by age 16.</p>
-            <div class="work-tags">
-              <span class="work-tag">Entrepreneur</span>
-              <span class="work-tag">Landscaping</span>
-              <span class="work-tag">Seasonal Work</span>
-              <span class="work-tag">$$$</span>
-            </div>
-          </div>
-        </div>
-        <div class="work-card">
-          <div class="work-icon">🔨</div>
-          <div class="work-content">
-            <h3>Tile Work with Dad</h3>
-            <p>Working alongside my father on tile showers and backsplashes has taught me precision, patience, and the value of hands-on craftsmanship.</p>
-            <div class="work-tags">
-              <span class="work-tag">Tile Showers</span>
-              <span class="work-tag">Backsplashes</span>
-              <span class="work-tag">Trades</span>
-            </div>
-          </div>
-        </div>
-        <div class="work-card">
-          <div class="work-icon">🛠️</div>
-          <div class="work-content">
-            <h3>Other Hands-On Skills</h3>
-            <p>Experienced in LVP flooring installation and automotive maintenance. I'm driven by a natural curiosity for understanding how things work and the satisfaction of solving problems hands-on.</p>
-            <div class="work-tags">
-              <span class="work-tag">LVP Flooring</span>
-              <span class="work-tag">Auto Repair</span>
-              <span class="work-tag">Handy Work</span>
-            </div>
-          </div>
+    <!-- Job 3: Overgrown Yard -->
+    <div class="job-card reveal">
+      <div class="job-header">
+        <div>
+          <h2 class="job-title">Overgrown Yard Transformation</h2>
+          <p class="job-description">Cleaned and mowed a severely overgrown yard with professional lawn care. Added clean striped lines for a polished, professional finish.</p>
         </div>
       </div>
-    </div>
-
-    
-
-<!-- Signature -->
-    <div class="signature-section reveal">
-      <p class="signature-label">Signed</p>
-      <svg class="signature-svg" id="signatureSvg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
-        <!-- G -->
-        <path d="M 30 60 Q 30 20, 60 20 Q 90 20, 90 45 L 70 45" />
-        <!-- l -->
-        <path d="M 100 15 L 100 70" />
-        <!-- e -->
-        <path d="M 115 50 Q 115 35, 130 35 Q 145 35, 145 50 L 115 50 Q 115 70, 135 68" />
-        <!-- b -->
-        <path d="M 155 15 L 155 70 Q 155 40, 175 38 Q 195 38, 192 55 Q 190 70, 170 70 Q 155 70, 155 55" />
-        <!-- space + G -->
-        <path d="M 225 60 Q 225 25, 255 25 Q 280 25, 280 48 L 260 48" />
-        <!-- dot -->
-        <circle class="sig-dot" cx="295" cy="48" r="4" />
-      </svg>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>&copy; 2026 <span>Gleb Gorbatiuc</span></p>
-      <p class="footer-sub">Moldova · Washington · North Dakota · Minnesota</p>
+      <div class="slider-container">
+        <img src="photos/lawn-before-3.jpg" alt="Before" class="slider-image before" style="clip-path: inset(0 50% 0 0);">
+        <img src="photos/lawn-after-3.jpg" alt="After" class="slider-image after">
+        <div class="slider-handle" id="slider3"></div>
+        <button class="slider-button">←→</button>
+        <div class="slider-label before">Before</div>
+        <div class="slider-label after">After</div>
+      </div>
+      <div class="job-review">
+        <p class="review-author">Alba - Client Testimonial</p>
+        <img src="photos/review-alba.jpg" alt="Client review from Alba" class="review-image">
+        <p class="review-text">Excellent work! Professional, reliable, and pays attention to detail. Highly recommend Gleb for any landscaping or yard work.</p>
+      </div>
     </div>
 
   </div>
-</div>
 
+  <!-- Signature -->
+  <div class="signature-section reveal">
+    <p class="signature-label">Signed</p>
+    <svg class="signature-svg" id="signatureSvg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- G -->
+      <path d="M 30 60 Q 30 20, 60 20 Q 90 20, 90 45 L 70 45" />
+      <!-- l -->
+      <path d="M 100 15 L 100 70" />
+      <!-- e -->
+      <path d="M 115 50 Q 115 35, 130 35 Q 145 35, 145 50 L 115 50 Q 115 70, 135 68" />
+      <!-- b -->
+      <path d="M 155 15 L 155 70 Q 155 40, 175 38 Q 195 38, 192 55 Q 190 70, 170 70 Q 155 70, 155 55" />
+      <!-- space + G -->
+      <path d="M 225 60 Q 225 25, 255 25 Q 280 25, 280 48 L 260 48" />
+      <!-- dot -->
+      <circle class="sig-dot" cx="295" cy="48" r="4" />
+    </svg>
+  </div>
 
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2026 <span>Gleb Gorbatiuc</span></p>
+    <p class="footer-sub">Moldova · Washington · North Dakota · Minnesota</p>
+  </div>
 
 </div>
 
@@ -340,8 +163,38 @@
 
 <canvas class="matrix-canvas" id="matrixCanvas"></canvas>
 
-
-
 <script src="main.js"></script>
+<script>
+// Before/After Image Slider
+(function() {
+  const sliders = document.querySelectorAll('.slider-container');
+
+  sliders.forEach((slider, index) => {
+    const handle = slider.querySelector('.slider-handle');
+    const beforeImage = slider.querySelector('.slider-image.before');
+    let isActive = false;
+
+    function updateSlider(e) {
+      if (!isActive) return;
+      const rect = slider.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      if (e.touches) x = e.touches[0].clientX - rect.left;
+      x = Math.max(0, Math.min(x, rect.width));
+      const percent = (x / rect.width) * 100;
+
+      handle.style.left = percent + '%';
+      beforeImage.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+    }
+
+    handle.addEventListener('mousedown', () => { isActive = true; });
+    document.addEventListener('mouseup', () => { isActive = false; });
+    document.addEventListener('mousemove', updateSlider);
+
+    handle.addEventListener('touchstart', () => { isActive = true; });
+    document.addEventListener('touchend', () => { isActive = false; });
+    document.addEventListener('touchmove', updateSlider);
+  });
+})();
+</script>
 </body>
 </html>
